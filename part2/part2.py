@@ -35,7 +35,7 @@ pset.addPrimitive(protectedDiv, 2)
 pset.addPrimitive(operator.neg, 1)
 pset.addPrimitive(math.cos, 1)
 pset.addPrimitive(math.sin, 1)
-pset.addEphemeralConstant("rand101", lambda: random.randint(-1,1))
+pset.addEphemeralConstant("rand101", lambda: random.randint(-1, 1))
 
 
 creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
