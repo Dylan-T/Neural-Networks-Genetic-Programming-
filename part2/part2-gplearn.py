@@ -18,9 +18,16 @@ fast. We’ll evolve 20 generations unless the error falls below 0.01."""
 """ Load in regression.txt into 2d array """
 inText = open("regression.txt", "r")
 inText = inText.read().splitlines()
-data = []
+xtrain = []
+ytrain = []
+
 for i in range(2, len(inText)):
-    data.append(inText[i].split())
+    tokens = inText[i].split()
+    xtrain.append([float(tokens[0])])
+    ytrain.append(float(tokens[1]))
+
+print(xtrain)
+print(ytrain)
 
 est_gp = SymbolicRegressor(population_size=5000,
                            generations=20, stopping_criteria=0.01,
@@ -30,7 +37,7 @@ est_gp = SymbolicRegressor(population_size=5000,
                            parsimony_coefficient=0.01, random_state=0)
 
 
-est_gp.fit(data[0], data[1])
+est_gp.fit(xtrain, ytrain)
 
 
 
@@ -42,5 +49,5 @@ print(est_gp._program)  # Print the best program
 
 
 """Print program tree"""
-graph = pydotplus.graphviz.graph_from_dot_data(est_gp._program.export_graphviz())
-Image(graph.create_png())
+# graph = pydotplus.graphviz.graph_from_dot_data(est_gp._program.export_graphviz())
+# Image(graph.create_png())
